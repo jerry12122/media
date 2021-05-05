@@ -10,7 +10,6 @@ from imutils import paths
 
 train_path = "train"
 training_names = os.listdir(train_path)
-#print(training_names)
 
 image_paths = []
 image_classes = []
@@ -40,7 +39,7 @@ descriptors = des_list[0][1]
 for image_path,descriptor in des_list[1:]:
     descriptors = np.vstack((descriptors , descriptor))
 
-k = 20
+k = 30
 voc,variance = kmeans(descriptors,k,1)
 
 im_features = np.zeros((len(des_list),k),"float32")
@@ -63,6 +62,9 @@ print(clf.predict(X_test))
 print("accuracy")
 print(clf.score(X_train, y_train))
 print(clf.score(X_test, y_test))
+for i in range(70,80):
+
+
 
 stdSlr = StandardScaler().fit(im_features)
 im_features = stdSlr.transform(im_features)
